@@ -76,6 +76,9 @@ export const metadata: Metadata = {
     shortcut: "/favicon.png",
     apple: "/favicon.png",
   },
+  verification: {
+    google: "LsIfiLokS2zGAW89w26B8EcDFW5bx5SM1IWD0YmskPE",
+  },
   // Geo tags for local SEO if targeting globally/locally (Optional but requested)
   other: {
     "geo.region": "US", // You can change this to your specific country code if targeting a specific region, or leave it broad.
