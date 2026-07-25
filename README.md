@@ -1,5 +1,7 @@
 # 🎬 NextWatch — The Dual-Realm Entertainment Discovery Engine
 
+> **Crafted with 💖 by LaughingHermit**
+
 **NextWatch** is a modern, keyless web application that delivers personalized recommendations across two distinct worlds: **Anime** and **Cinema/TV**. Built with Next.js 15, React, Framer Motion, and Tailwind CSS, NextWatch features dual visual design systems and integrates real-time API data without requiring user registration or API keys.
 
 ---
@@ -100,13 +102,9 @@ nextwatch/
 
 ---
 
-## 🌐 Deployment (Hosting for Free)
+## 🌐 Deployment (Hosting on Vercel)
 
-Because **NextWatch** requires **no API keys or database setup**, hosting it live for public use takes under 2 minutes!
-
-### Option 1: Deploy on Vercel (Recommended)
-
-[Vercel](https://vercel.com) is built by the creators of Next.js and offers instant zero-config deployments.
+Because **NextWatch** requires **no API keys or database setup**, hosting it live on Vercel takes under 2 minutes!
 
 1. **Push your code to GitHub**:
    ```bash
@@ -124,18 +122,12 @@ Because **NextWatch** requires **no API keys or database setup**, hosting it liv
 
 ---
 
-### Option 2: Deploy on Netlify
-
-1. Push your project to GitHub.
-2. Sign in to **[Netlify](https://app.netlify.com)**.
-3. Click **Add new site** → **Import an existing project**.
-4. Select GitHub and choose your `nextwatch` repository.
-5. Click **Deploy NextWatch**.
-
----
-
-## 📜 License
+## 📜 License & Credits
 
 MIT License — Feel free to use and adapt this project!
 
-# NextWatch
+---
+*Crafted with 💖 by **LaughingHermit***
+
+
+
