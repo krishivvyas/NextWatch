@@ -22,7 +22,7 @@ const GENRE_MAP: Record<string, string> = {
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { genres = [], rating, era } = body;
+    const { genres = [], rating, era, status } = body;
 
     // Map frontend genre labels -> TVMaze genre names
     const targetGenres: string[] = genres.map((g: string) => GENRE_MAP[g] ?? g);
@@ -64,6 +64,11 @@ export async function POST(request: Request) {
           const eraEnd = minYear + 9;
           if (premieredYear < minYear || premieredYear > eraEnd) return false;
         }
+      }
+
+      // Status filter
+      if (status && status !== 'any') {
+        if (show.status !== status) return false;
       }
 
       // Language filter - Default to English only

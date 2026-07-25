@@ -67,6 +67,7 @@ export default function Questionnaire() {
       ]
     : [
         { key: 'genres', title: 'What genres are you craving?', type: 'multi', options: movieGenres },
+        { key: 'status', title: 'Ongoing or Ended?', type: 'single', options: [{id:'any', label:'Any'}, {id:'Running', label:'Ongoing (Running)'}, {id:'Ended', label:'Ended (Finished)'}] },
         {
           key: 'era',
           title: 'Which Era? 🎞️',
