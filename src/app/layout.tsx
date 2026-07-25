@@ -77,7 +77,7 @@ export const metadata: Metadata = {
     apple: "/favicon.png",
   },
   verification: {
-    google: "LsIfiLokS2zGAW89w26B8EcDFW5bx5SM1IWD0YmskPE",
+    google: "8fLzguORaFGXvrCUa4ltCWqO326RBEna7NankxCE5Eg",
   },
   // Geo tags for local SEO if targeting globally/locally (Optional but requested)
   other: {
