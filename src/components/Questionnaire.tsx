@@ -48,6 +48,7 @@ export default function Questionnaire() {
         { key: 'commitment', title: 'Commitment Level?', type: 'single', options: [{id:'movie', label:'Movie'}, {id:'quick', label:'12-24 Ep (Quick Arc)'}, {id:'long', label:'100+ Ep (The Long Journey)'}] },
         { key: 'audio', title: 'Audio Preference?', type: 'single', options: [{id:'sub', label:'Subbed (Japanese)'}, {id:'dub', label:'Dubbed (English)'}] },
         { key: 'rating', title: 'Vibe / Rating?', type: 'single', options: [{id:'pg', label:'Wholesome (PG)'}, {id:'pg13', label:'Teen (PG-13)'}, {id:'r17', label:'Dark/Gory (R - 17+)'}] },
+        { key: 'status', title: 'Ongoing or Ended?', type: 'single', options: [{id:'any', label:'Any'}, {id:'RELEASING', label:'Ongoing (Releasing)'}, {id:'FINISHED', label:'Ended (Finished)'}] },
         {
           key: 'era',
           title: 'Which Era? 🗓️',

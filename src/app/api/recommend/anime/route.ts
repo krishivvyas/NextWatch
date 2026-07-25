@@ -18,7 +18,7 @@ const GENRE_MAP: Record<string, string> = {
 
 async function fetchAniList(variables: Record<string, any>): Promise<any[]> {
   const query = `
-    query ($genres: [String], $yearGreater: FuzzyDateInt, $format: MediaFormat, $page: Int, $perPage: Int) {
+    query ($genres: [String], $yearGreater: FuzzyDateInt, $format: MediaFormat, $status: MediaStatus, $page: Int, $perPage: Int) {
       Page(page: $page, perPage: $perPage) {
         media(
           type: ANIME
@@ -26,6 +26,7 @@ async function fetchAniList(variables: Record<string, any>): Promise<any[]> {
           genre_in: $genres
           startDate_greater: $yearGreater
           format: $format
+          status: $status
         ) {
           id
           title { romaji english }
@@ -61,7 +62,7 @@ async function fetchAniList(variables: Record<string, any>): Promise<any[]> {
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { genres = [], commitment, era } = body;
+    const { genres = [], commitment, era, status } = body;
 
     // Map genre IDs → AniList genre names, deduplicated
     const mappedGenres: string[] = [
@@ -88,6 +89,7 @@ export async function POST(request: Request) {
     if (mappedGenres.length > 0) vars1.genres = mappedGenres;
     if (yearGreater) vars1.yearGreater = yearGreater;
     if (format) vars1.format = format;
+    if (status && status !== 'any') vars1.status = status;
 
     console.log('[Anime API] Attempt 1 vars:', JSON.stringify(vars1));
     let media = await fetchAniList(vars1);
@@ -98,6 +100,7 @@ export async function POST(request: Request) {
       const vars2: Record<string, any> = { page: 1, perPage: 15 };
       if (mappedGenres.length > 0) vars2.genres = mappedGenres;
       if (format) vars2.format = format;
+      if (status && status !== 'any') vars2.status = status;
       console.log('[Anime API] Attempt 2 (no era):', JSON.stringify(vars2));
       media = await fetchAniList(vars2);
       console.log('[Anime API] Attempt 2 count:', media.length);
