@@ -1,36 +1,141 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎬 NextWatch — The Dual-Realm Entertainment Discovery Engine
 
-## Getting Started
+**NextWatch** is a modern, keyless web application that delivers personalized recommendations across two distinct worlds: **Anime** and **Cinema/TV**. Built with Next.js 15, React, Framer Motion, and Tailwind CSS, NextWatch features dual visual design systems and integrates real-time API data without requiring user registration or API keys.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## ✨ Features
+
+- **🎌 Dual Aesthetic Design System**
+  - **Anime Realm**: Cel-shaded manga aesthetics, speed lines, neon accents, Japanese typography, and a Sharingan-inspired loading sequence with power-level counter.
+  - **Cinema & TV**: Dark film noir theater vibe, letterboxing effects, film strip sidebars, gold accents, and a film reel countdown with classic movie quotes.
+
+- **🎲 Surprise Me Mode**
+  - Top-left quick action button that randomly selects a realm, generates dynamic criteria, and delivers instant recommendations without filling out a questionnaire.
+
+- **🗓️ Era & Genre-Based Discovery**
+  - Filter by release eras (2020s Streaming Age, 2010s Golden Era, 90s Classics, 80s & older) and curated genre combinations.
+
+- **🚀 Real-Time Keyless API Integration**
+  - **Anime Endpoint**: Powered by the **AniList GraphQL API** with a 4-tier fallback cascade to guarantee matches.
+  - **Cinema/TV Endpoint**: Powered by the **TVMaze REST API** with client-side index pagination and genre matching.
+
+- **📱 Fully Responsive**
+  - Designed for smooth animation and layout across mobile, tablet, and desktop viewports.
+
+---
+
+## 🛠️ Tech Stack
+
+- **Framework**: Next.js 15 (App Router)
+- **UI & Styling**: Tailwind CSS, CSS Variables, Modern Fonts (`Bebas Neue`, `Rajdhani`, `Noto Serif JP`, `Inter`)
+- **Animations**: Framer Motion
+- **State Management**: Zustand
+- **Icons**: Lucide React
+- **APIs**: AniList GraphQL API, TVMaze REST API
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 18.x or higher
+- npm, yarn, or pnpm
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/nextwatch.git
+   cd nextwatch
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Run the development server:
+   ```bash
+   npm run dev
+   ```
+
+4. Open [http://localhost:3000](http://localhost:3000) in your browser to view the application.
+
+---
+
+## 📁 Project Structure
+
+```
+nextwatch/
+├── src/
+│   ├── app/
+│   │   ├── api/
+│   │   │   └── recommend/
+│   │   │       ├── anime/route.ts    # AniList GraphQL gateway with fallbacks
+│   │   │       └── movie/route.ts    # TVMaze REST gateway with pagination
+│   │   ├── globals.css               # Dual-theme tokens & decorative keyframes
+│   │   ├── layout.tsx                # App root layout
+│   │   └── page.tsx                  # Dynamic theme class wrapper
+│   ├── components/
+│   │   ├── LandingPage.tsx           # Dual card portal & Surprise Me trigger
+│   │   ├── Questionnaire.tsx         # Multi-step preference selector
+│   │   ├── LoadingScreen.tsx         # Sharingan / Film Reel thematic loaders
+│   │   └── ResultsGallery.tsx        # Responsive media cards with score badges
+│   └── store/
+│       └── useAppStore.ts            # Global Zustand state (theme, step, results)
+├── public/
+├── README.md
+└── package.json
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🔌 API Information
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **No API keys or environment variables required.**
+- **Anime**: Uses `https://graphql.anilist.co` for anime search and filtering.
+- **Cinema/TV**: Uses `https://api.tvmaze.com` for show indexing and genre query matching.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🌐 Deployment (Hosting for Free)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Because **NextWatch** requires **no API keys or database setup**, hosting it live for public use takes under 2 minutes!
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Option 1: Deploy on Vercel (Recommended)
 
-## Deploy on Vercel
+[Vercel](https://vercel.com) is built by the creators of Next.js and offers instant zero-config deployments.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. **Push your code to GitHub**:
+   ```bash
+   git init
+   git add .
+   git commit -m "Initial commit"
+   git remote add origin https://github.com/your-username/nextwatch.git
+   git branch -M main
+   git push -u origin main
+   ```
+2. Go to **[vercel.com/new](https://vercel.com/new)** and sign in with GitHub.
+3. Import your `nextwatch` repository.
+4. Click **Deploy** (Framework preset will automatically detect Next.js).
+5. Your live URL will be generated immediately (e.g., `https://nextwatch.vercel.app`).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+### Option 2: Deploy on Netlify
+
+1. Push your project to GitHub.
+2. Sign in to **[Netlify](https://app.netlify.com)**.
+3. Click **Add new site** → **Import an existing project**.
+4. Select GitHub and choose your `nextwatch` repository.
+5. Click **Deploy NextWatch**.
+
+---
+
+## 📜 License
+
+MIT License — Feel free to use and adapt this project!
+
+# NextWatch
