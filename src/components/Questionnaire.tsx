@@ -66,7 +66,6 @@ export default function Questionnaire() {
       ]
     : [
         { key: 'genres', title: 'What genres are you craving?', type: 'multi', options: movieGenres },
-        { key: 'language', title: 'Preferred Language?', type: 'single', options: [{id:'en', label:'English'}, {id:'ko', label:'Korean (K-Drama)'}, {id:'es', label:'Spanish'}, {id:'ja', label:'Japanese'}] },
         {
           key: 'era',
           title: 'Which Era? 🎞️',

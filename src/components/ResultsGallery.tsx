@@ -1,9 +1,11 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useAppStore } from '../store/useAppStore';
 import { RefreshCcw, Star, Tv, Calendar } from 'lucide-react';
 
 export default function ResultsGallery() {
   const { results, theme, reset } = useAppStore();
+  const [expandedId, setExpandedId] = useState<string | number | null>(null);
   const isAnime = theme === 'anime';
   const accentClass = isAnime ? 'text-yellow-400' : 'text-rose-500';
   const accentBg = isAnime ? 'bg-yellow-400 text-slate-900' : 'bg-rose-600 text-white';
@@ -39,7 +41,8 @@ export default function ResultsGallery() {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: idx * 0.08, duration: 0.5 }}
-            className="group relative rounded-2xl overflow-hidden bg-gray-900 shadow-2xl border border-white/5"
+            onClick={() => setExpandedId(expandedId === item.id ? null : item.id)}
+            className="group relative rounded-2xl overflow-hidden bg-gray-900 shadow-2xl border border-white/5 cursor-pointer"
           >
             {/* Poster */}
             <div className="aspect-[2/3] w-full bg-gray-800 relative">
@@ -77,8 +80,17 @@ export default function ResultsGallery() {
               </div>
             </div>
 
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/85 to-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
-              <h3 className="text-lg font-bold mb-1 line-clamp-2">{item.title}</h3>
+            <div 
+              className={`absolute inset-0 transition-all duration-300 flex flex-col p-4 ${
+                expandedId === item.id 
+                  ? 'opacity-100 bg-black/95 z-10 justify-start overflow-y-auto pt-6' 
+                  : 'opacity-0 group-hover:opacity-100 bg-gradient-to-t from-black via-black/85 to-black/20 justify-end'
+              }`}
+            >
+              {expandedId === item.id && (
+                <div className="absolute top-2 right-3 text-white/40 hover:text-white text-lg">✕</div>
+              )}
+              <h3 className={`font-bold mb-1 ${expandedId === item.id ? 'text-xl mt-4 text-white' : 'text-lg line-clamp-2'}`}>{item.title}</h3>
 
               {/* Meta info */}
               <div className="flex flex-wrap gap-2 mb-2 text-xs opacity-70">
@@ -93,13 +105,19 @@ export default function ResultsGallery() {
               {/* Genres */}
               {item.genres && item.genres.length > 0 && (
                 <div className="flex flex-wrap gap-1 mb-2">
-                  {item.genres.slice(0, 3).map((g: string) => (
+                  {item.genres.map((g: string) => (
                     <span key={g} className="px-2 py-0.5 rounded-full bg-white/10 text-white text-xs">{g}</span>
                   ))}
                 </div>
               )}
 
-              <p className="text-xs text-gray-300 line-clamp-3">{item.synopsis || 'No synopsis available.'}</p>
+              <p className={`text-gray-300 ${expandedId === item.id ? 'text-sm mt-3 pb-4 leading-relaxed' : 'text-xs line-clamp-3'}`}>
+                {item.synopsis || 'No synopsis available.'}
+              </p>
+
+              {expandedId !== item.id && (
+                <p className="text-[10px] text-gray-500 mt-2 uppercase tracking-wider text-center w-full">Tap for full info</p>
+              )}
             </div>
           </motion.div>
         ))}

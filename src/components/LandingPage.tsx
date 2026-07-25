@@ -254,7 +254,7 @@ export default function LandingPage() {
           </div>
         </motion.div>
 
-        {/* ── CINEMA CARD ── */}
+        {/* ── TV SERIES CARD ── */}
         <motion.div
           id="card-cinema"
           initial={{ opacity: 0, x: 60 }}
@@ -272,7 +272,7 @@ export default function LandingPage() {
           {/* Background image */}
           <img
             src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=2000&auto=format&fit=crop"
-            alt="Cinema"
+            alt="TV Series"
             className="absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
             style={{ filter: hoveredCard === 'movie' ? 'sepia(0.3) brightness(0.5)' : 'sepia(0.6) brightness(0.25)' }}
           />
@@ -323,10 +323,10 @@ export default function LandingPage() {
                   transition: 'color 0.4s ease',
                 }}
               >
-                Cinema &amp; TV
+                TV Series
               </h2>
               <p className="tracking-[0.2em] sm:tracking-[0.3em] uppercase text-xs sm:text-sm font-light opacity-70" style={{ color: '#d4af37' }}>
-                The Silver Screen Awaits
+                Binge-Worthy Shows Await
               </p>
             </motion.div>
 
@@ -337,7 +337,7 @@ export default function LandingPage() {
               className="mt-4 sm:mt-6 px-5 sm:px-8 py-2.5 sm:py-3 border-2 text-xs sm:text-sm font-bold tracking-widest uppercase"
               style={{ borderColor: '#d4af37', color: '#d4af37', fontFamily: "'Inter', serif" }}
             >
-              Roll Film →
+              Start Binging →
             </motion.div>
 
             {/* Mobile tap hint */}

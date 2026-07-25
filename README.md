@@ -2,7 +2,7 @@
 
 > **Crafted with 💖 by LaughingHermit**
 
-**NextWatch** is a modern, keyless web application that delivers personalized recommendations across two distinct worlds: **Anime** and **Cinema/TV**. Built with Next.js 15, React, Framer Motion, and Tailwind CSS, NextWatch features dual visual design systems and integrates real-time API data without requiring user registration or API keys.
+**NextWatch** is a modern, keyless web application that delivers personalized recommendations across two distinct worlds: **Anime** and **TV Series**. Built with Next.js 15, React, Framer Motion, and Tailwind CSS, NextWatch features dual visual design systems and integrates real-time API data without requiring user registration or API keys.
 
 ---
 
@@ -10,7 +10,7 @@
 
 - **🎌 Dual Aesthetic Design System**
   - **Anime Realm**: Cel-shaded manga aesthetics, speed lines, neon accents, Japanese typography, and a Sharingan-inspired loading sequence with power-level counter.
-  - **Cinema & TV**: Dark film noir theater vibe, letterboxing effects, film strip sidebars, gold accents, and a film reel countdown with classic movie quotes.
+  - **TV Series**: Dark film noir theater vibe, letterboxing effects, film strip sidebars, gold accents, and a film reel countdown with classic TV/movie quotes.
 
 - **🎲 Surprise Me Mode**
   - Top-left quick action button that randomly selects a realm, generates dynamic criteria, and delivers instant recommendations without filling out a questionnaire.
@@ -20,10 +20,11 @@
 
 - **🚀 Real-Time Keyless API Integration**
   - **Anime Endpoint**: Powered by the **AniList GraphQL API** with a 4-tier fallback cascade to guarantee matches.
-  - **Cinema/TV Endpoint**: Powered by the **TVMaze REST API** with client-side index pagination and genre matching.
+  - **TV Series Endpoint**: Powered by the **TVMaze REST API** with client-side index pagination and genre matching.
 
-- **📱 Fully Responsive**
+- **📱 Fully Responsive & Interactive**
   - Designed for smooth animation and layout across mobile, tablet, and desktop viewports.
+  - Interactive result cards that tap to expand, revealing the full synopsis and complete genre tags without breaking the layout grid.
 
 ---
 
@@ -76,7 +77,7 @@ nextwatch/
 │   │   ├── api/
 │   │   │   └── recommend/
 │   │   │       ├── anime/route.ts    # AniList GraphQL gateway with fallbacks
-│   │   │       └── movie/route.ts    # TVMaze REST gateway with pagination
+│   │   │       └── movie/route.ts    # TVMaze REST gateway with pagination (TV Series)
 │   │   ├── globals.css               # Dual-theme tokens & decorative keyframes
 │   │   ├── layout.tsx                # App root layout
 │   │   └── page.tsx                  # Dynamic theme class wrapper
@@ -98,7 +99,7 @@ nextwatch/
 
 - **No API keys or environment variables required.**
 - **Anime**: Uses `https://graphql.anilist.co` for anime search and filtering.
-- **Cinema/TV**: Uses `https://api.tvmaze.com` for show indexing and genre query matching.
+- **TV Series**: Uses `https://api.tvmaze.com` for show indexing and genre query matching.
 
 ---
 

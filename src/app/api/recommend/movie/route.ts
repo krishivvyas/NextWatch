@@ -22,7 +22,7 @@ const GENRE_MAP: Record<string, string> = {
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { genres = [], language, rating, era } = body;
+    const { genres = [], rating, era } = body;
 
     // Map frontend genre labels -> TVMaze genre names
     const targetGenres: string[] = genres.map((g: string) => GENRE_MAP[g] ?? g);
@@ -66,14 +66,8 @@ export async function POST(request: Request) {
         }
       }
 
-      // Language filter
-      if (language && language !== 'any') {
-        const langMap: Record<string, string> = {
-          en: 'English', ko: 'Korean', es: 'Spanish', ja: 'Japanese',
-        };
-        const targetLang = langMap[language];
-        if (targetLang && show.language !== targetLang) return false;
-      }
+      // Language filter - Default to English only
+      if (show.language !== 'English') return false;
 
       // Genre filter
       if (targetGenres.length > 0) {
