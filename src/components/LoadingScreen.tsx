@@ -120,7 +120,7 @@ function FilmReel() {
             className="absolute inset-0 flex items-center justify-center"
           >
             <span
-              className="text-5xl font-bold"
+              className="text-4xl sm:text-5xl font-bold"
               style={{ fontFamily: "'Bebas Neue', serif", color: '#d4af37' }}
             >
               {frame === 0 ? '🎬' : frame}
@@ -189,12 +189,12 @@ export default function LoadingScreen() {
 
           {/* Power level scouter */}
           <div
-            className="relative px-8 py-4 border-2 border-yellow-400/40 rounded-sm"
+            className="relative px-6 py-3 sm:px-8 sm:py-4 border-2 border-yellow-400/40 rounded-sm"
             style={{ boxShadow: '0 0 20px rgba(250,204,21,0.2)', background: 'rgba(250,204,21,0.05)' }}
           >
-            <p className="text-xs uppercase tracking-widest text-yellow-400/60 mb-1">Power Level</p>
+            <p className="text-[10px] sm:text-xs uppercase tracking-widest text-yellow-400/60 mb-1">Power Level</p>
             <motion.p
-              className="text-5xl font-bold"
+              className="text-4xl sm:text-5xl font-bold"
               style={{ fontFamily: "'Bebas Neue', sans-serif", color: '#facc15', textShadow: '0 0 20px #facc15' }}
             >
               {powerValue.toLocaleString()}
@@ -245,13 +245,13 @@ export default function LoadingScreen() {
             transition={{ duration: 0.6 }}
           >
             <p
-              className="text-2xl md:text-3xl font-light italic mb-4"
+              className="text-xl sm:text-2xl md:text-3xl font-light italic mb-4"
               style={{ color: '#f5f0e8', fontFamily: "'Inter', serif", lineHeight: 1.6 }}
             >
               &ldquo;{MOVIE_QUOTES[quoteIdx].quote}&rdquo;
             </p>
             <p
-              className="text-xs uppercase tracking-widest"
+              className="text-[10px] sm:text-xs uppercase tracking-widest"
               style={{ color: '#d4af37' }}
             >
               — {MOVIE_QUOTES[quoteIdx].film}

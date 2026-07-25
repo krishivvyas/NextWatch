@@ -208,14 +208,14 @@ export default function Questionnaire() {
         </button>
 
         {/* Progress bar */}
-        <div className="flex gap-2 items-center">
+        <div className="flex gap-1.5 sm:gap-2 items-center">
           {questions.map((_, i) => (
             isAnime ? (
               <div
                 key={i}
                 className="h-1.5 transition-all duration-500"
                 style={{
-                  width: i <= currentQuestion ? '48px' : '24px',
+                  width: i <= currentQuestion ? '32px' : '16px',
                   background: i <= currentQuestion
                     ? 'linear-gradient(90deg, #f43f5e, #facc15)'
                     : 'rgba(255,255,255,0.1)',
@@ -227,22 +227,22 @@ export default function Questionnaire() {
                 key={i}
                 className="h-0.5 transition-all duration-500"
                 style={{
-                  width: i <= currentQuestion ? '40px' : '20px',
+                  width: i <= currentQuestion ? '28px' : '14px',
                   background: i <= currentQuestion ? '#c41230' : 'rgba(212,175,55,0.2)',
                 }}
               />
             )
           ))}
-          <span className="text-xs ml-2 opacity-40 tracking-widest">
+          <span className="text-[10px] sm:text-xs ml-1 sm:ml-2 opacity-40 tracking-widest">
             {currentQuestion + 1}/{questions.length}
           </span>
         </div>
 
-        <div className="w-16" />
+        <div className="w-8 sm:w-16" />
       </div>
 
       {/* Question area */}
-      <div className="flex-1 flex flex-col items-center justify-center px-8 max-w-5xl mx-auto w-full z-10">
+      <div className="flex-1 flex flex-col items-center justify-center px-4 sm:px-8 max-w-5xl mx-auto w-full z-10">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentQuestion}
@@ -255,7 +255,7 @@ export default function Questionnaire() {
             {/* Question title */}
             {isAnime ? (
               <h2
-                className="text-4xl md:text-6xl uppercase tracking-widest text-center mb-12"
+                className="text-3xl sm:text-4xl md:text-6xl uppercase tracking-widest text-center mb-8 sm:mb-12 px-2"
                 style={{
                   fontFamily: "'Bebas Neue', sans-serif",
                   color: '#facc15',
@@ -265,17 +265,17 @@ export default function Questionnaire() {
                 {currentQ.title}
               </h2>
             ) : (
-              <div className="text-center mb-12">
-                <p className="text-xs uppercase tracking-[0.4em] mb-3" style={{ color: '#c41230' }}>
+              <div className="text-center mb-8 sm:mb-12 px-2">
+                <p className="text-[10px] sm:text-xs uppercase tracking-[0.4em] mb-2 sm:mb-3" style={{ color: '#c41230' }}>
                   Question {currentQuestion + 1}
                 </p>
                 <h2
-                  className="text-3xl md:text-5xl font-light tracking-wide"
+                  className="text-2xl sm:text-3xl md:text-5xl font-light tracking-wide"
                   style={{ fontFamily: "'Inter', serif", color: '#f5f0e8' }}
                 >
                   {currentQ.title}
                 </h2>
-                <div className="mt-4 mx-auto h-px w-24" style={{ background: 'linear-gradient(90deg, transparent, #d4af37, transparent)' }} />
+                <div className="mt-3 sm:mt-4 mx-auto h-px w-16 sm:w-24" style={{ background: 'linear-gradient(90deg, transparent, #d4af37, transparent)' }} />
               </div>
             )}
 
@@ -287,13 +287,12 @@ export default function Questionnaire() {
                   onChange={(e) => setAnswers(prev => ({ ...prev, [currentQ.key]: e.target.value }))}
                   placeholder={currentQ.placeholder}
                   rows={5}
-                  className="w-full resize-none p-6 text-lg focus:outline-none transition-all"
+                  className="w-full resize-none p-4 sm:p-6 text-base sm:text-lg focus:outline-none transition-all"
                   style={isAnime ? {
                     background: 'rgba(250,204,21,0.05)',
                     border: '2px solid rgba(250,204,21,0.3)',
                     color: '#fff',
                     fontFamily: "'Rajdhani', sans-serif",
-                    fontSize: '18px',
                     boxShadow: answers[currentQ.key] ? '0 0 20px rgba(250,204,21,0.2), inset 0 0 20px rgba(250,204,21,0.05)' : 'none',
                   } : {
                     background: 'transparent',
@@ -304,7 +303,6 @@ export default function Questionnaire() {
                     color: '#f5f0e8',
                     fontFamily: "'Inter', serif",
                     fontStyle: 'italic',
-                    fontSize: '18px',
                   }}
                 />
                 <p className="mt-4 text-center text-sm opacity-40 tracking-widest uppercase">
@@ -327,10 +325,10 @@ export default function Questionnaire() {
                           if (currentQ.type === 'multi') toggleGenre(opt.id);
                           if (currentQ.type === 'single') setAnswers(prev => ({ ...prev, [currentQ.key]: opt.id }));
                         }}
-                        className="relative p-5 text-base font-bold uppercase tracking-widest transition-all duration-300 text-center"
+                        className="relative w-full sm:w-auto p-4 sm:p-5 text-sm sm:text-base font-bold uppercase tracking-widest transition-all duration-300 text-center"
                         style={{
                           fontFamily: "'Rajdhani', sans-serif",
-                          minWidth: '180px',
+                          minWidth: 'min(100%, 180px)',
                           background: isSelected ? 'rgba(250,204,21,0.12)' : 'rgba(255,255,255,0.02)',
                           border: isSelected ? '2px solid #facc15' : '2px solid rgba(255,255,255,0.1)',
                           color: isSelected ? '#facc15' : '#94a3b8',
@@ -354,10 +352,10 @@ export default function Questionnaire() {
                           if (currentQ.type === 'multi') toggleGenre(opt.id);
                           if (currentQ.type === 'single') setAnswers(prev => ({ ...prev, [currentQ.key]: opt.id }));
                         }}
-                        className="relative p-5 text-base font-light tracking-widest transition-all duration-300 text-center"
+                        className="relative w-full sm:w-auto p-4 sm:p-5 text-sm sm:text-base font-light tracking-widest transition-all duration-300 text-center"
                         style={{
                           fontFamily: "'Inter', serif",
-                          minWidth: '200px',
+                          minWidth: 'min(100%, 200px)',
                           background: isSelected ? 'rgba(196,18,48,0.08)' : 'transparent',
                           border: 'none',
                           borderLeft: isSelected ? '3px solid #c41230' : '3px solid rgba(212,175,55,0.2)',
@@ -380,13 +378,13 @@ export default function Questionnaire() {
       </div>
 
       {/* Continue button */}
-      <div className="relative z-10 w-full max-w-5xl mx-auto flex justify-end px-8 pb-12 pt-6">
+      <div className="relative z-10 w-full max-w-5xl mx-auto flex justify-center sm:justify-end px-4 sm:px-8 pb-8 sm:pb-12 pt-6">
         <motion.button
           onClick={handleNext}
           disabled={isNextDisabled}
           whileHover={isNextDisabled ? {} : { scale: 1.04 }}
           whileTap={isNextDisabled ? {} : { scale: 0.97 }}
-          className="flex items-center gap-3 px-10 py-4 font-bold uppercase tracking-widest text-sm transition-all"
+          className="flex items-center justify-center gap-2 sm:gap-3 px-8 sm:px-10 py-3 sm:py-4 font-bold uppercase tracking-widest text-xs sm:text-sm transition-all w-full sm:w-auto"
           style={isAnime ? {
             fontFamily: "'Rajdhani', sans-serif",
             background: isNextDisabled ? 'rgba(255,255,255,0.05)' : 'linear-gradient(135deg, #facc15, #f59e0b)',

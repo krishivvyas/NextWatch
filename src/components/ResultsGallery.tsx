@@ -21,18 +21,18 @@ export default function ResultsGallery() {
   }
 
   return (
-    <div className="min-h-screen p-8 md:p-12 max-w-screen-2xl mx-auto">
-      <div className="flex justify-between items-center mb-12">
+    <div className="min-h-screen p-4 sm:p-8 md:p-12 max-w-screen-2xl mx-auto">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8 sm:mb-12">
         <div>
-          <h2 className="text-4xl md:text-5xl font-bold">Your NextWatch</h2>
-          <p className="mt-2 opacity-50">{results.length} matches found</p>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold">Your NextWatch</h2>
+          <p className="mt-1 sm:mt-2 opacity-50 text-sm sm:text-base">{results.length} matches found</p>
         </div>
-        <button onClick={reset} className="flex items-center gap-2 px-6 py-3 rounded-full border-2 border-gray-700 hover:border-gray-500 transition-all font-medium">
-          <RefreshCcw className="w-5 h-5" /> Start Over
+        <button onClick={reset} className="flex items-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 rounded-full border-2 border-gray-700 hover:border-gray-500 transition-all font-medium text-sm sm:text-base w-full sm:w-auto justify-center">
+          <RefreshCcw className="w-4 h-4 sm:w-5 sm:h-5" /> Start Over
         </button>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
         {results.map((item, idx) => (
           <motion.div
             key={item.id}

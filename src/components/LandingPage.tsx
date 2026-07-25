@@ -91,7 +91,7 @@ export default function LandingPage() {
 
   return (
     <div
-      className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden"
+      className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden px-4"
       style={{ background: 'radial-gradient(ellipse at center, #0d1117 0%, #05080f 100%)' }}
     >
       {/* ── SURPRISE ME BUTTON ── */}
@@ -104,24 +104,26 @@ export default function LandingPage() {
         disabled={surprising}
         whileHover={{ scale: 1.07 }}
         whileTap={{ scale: 0.95 }}
-        className="absolute top-6 left-6 z-20 flex items-center gap-2.5 px-5 py-2.5 text-sm font-bold uppercase tracking-widest"
+        className="absolute top-4 left-4 z-20 flex items-center gap-2 px-3 py-2 sm:px-5 sm:py-2.5 text-xs sm:text-sm font-bold uppercase tracking-widest"
         style={{
           background:   'rgba(255,255,255,0.04)',
           border:       '1px solid rgba(255,255,255,0.12)',
           backdropFilter: 'blur(8px)',
           color:        surprising ? '#4a5568' : '#e2e8f0',
           cursor:       surprising ? 'not-allowed' : 'pointer',
-          letterSpacing: '0.15em',
+          letterSpacing: '0.1em',
         }}
       >
         <motion.div
           animate={surprising ? { rotate: 360 } : { rotate: 0 }}
           transition={surprising ? { repeat: Infinity, duration: 0.8, ease: 'linear' } : {}}
         >
-          <Shuffle className="w-4 h-4" />
+          <Shuffle className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
         </motion.div>
-        {surprising ? 'Fetching...' : 'Surprise Me'}
+        <span className="hidden xs:inline">{surprising ? 'Fetching...' : 'Surprise Me'}</span>
+        <span className="xs:hidden">{surprising ? '...' : 'Surprise'}</span>
       </motion.button>
+
       {/* Ambient stars — rendered client-side only */}
       <div className="absolute inset-0 pointer-events-none">
         {stars.map((s, i) => (
@@ -146,21 +148,21 @@ export default function LandingPage() {
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, ease: 'easeOut' }}
-        className="text-center mb-12 z-10"
+        className="text-center mb-6 sm:mb-10 md:mb-12 z-10"
       >
         <h1
-          className="font-display text-7xl md:text-9xl tracking-wider uppercase mb-4"
+          className="font-display text-5xl sm:text-7xl md:text-9xl tracking-wider uppercase mb-2 sm:mb-4"
           style={{ fontFamily: "'Bebas Neue', sans-serif", letterSpacing: '0.1em', color: '#f8fafc' }}
         >
           NextWatch
         </h1>
-        <p className="text-xl md:text-2xl text-gray-400 font-light tracking-widest">
+        <p className="text-base sm:text-xl md:text-2xl text-gray-400 font-light tracking-widest">
           What are we watching today?
         </p>
       </motion.div>
 
-      {/* The two cards */}
-      <div className="flex flex-col md:flex-row gap-0 w-full max-w-6xl z-10 h-[55vh] min-h-[400px]">
+      {/* The two cards — stacked on mobile, side-by-side on md+ */}
+      <div className="flex flex-col md:flex-row gap-3 md:gap-0 w-full max-w-6xl z-10 h-auto md:h-[55vh] md:min-h-[400px]">
 
         {/* ── ANIME CARD ── */}
         <motion.div
@@ -172,10 +174,9 @@ export default function LandingPage() {
           onClick={() => handleSelect('anime')}
           onMouseEnter={() => setHoveredCard('anime')}
           onMouseLeave={() => setHoveredCard(null)}
-          className="flex-1 relative overflow-hidden cursor-pointer group"
+          className="flex-1 relative overflow-hidden cursor-pointer group rounded-lg md:rounded-none md:border-r-[3px] md:border-b-0 border-r-0 border-b-[3px] border-[#facc15] [clip-path:none] md:[clip-path:polygon(0_0,95%_0,100%_100%,0_100%)]"
           style={{
-            clipPath: 'polygon(0 0, 95% 0, 100% 100%, 0 100%)',
-            borderRight: '3px solid #facc15',
+            minHeight: '200px',
           }}
         >
           {/* Background image */}
@@ -206,7 +207,7 @@ export default function LandingPage() {
           />
 
           {/* Top-left kanji accent */}
-          <div className="absolute top-6 left-6 text-5xl opacity-20 select-none" style={{ fontFamily: "'Noto Serif JP', serif", color: '#facc15' }}>
+          <div className="absolute top-4 left-4 text-4xl sm:text-5xl opacity-20 select-none" style={{ fontFamily: "'Noto Serif JP', serif", color: '#facc15' }}>
             観
           </div>
 
@@ -217,7 +218,7 @@ export default function LandingPage() {
           />
 
           {/* Content */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center p-8">
+          <div className="absolute inset-0 flex flex-col items-center justify-center p-6 sm:p-8">
             <motion.div
               animate={{ textShadow: hoveredCard === 'anime'
                 ? '0 0 20px #facc15, 0 0 40px #f43f5e, 0 0 80px #f43f5e'
@@ -226,14 +227,14 @@ export default function LandingPage() {
               transition={{ duration: 0.4 }}
               className="text-center"
             >
-              <div className="text-6xl mb-3">⛩️</div>
+              <div className="text-4xl sm:text-6xl mb-2 sm:mb-3">⛩️</div>
               <h2
-                className="text-5xl md:text-7xl font-display uppercase tracking-widest text-white mb-2"
+                className="text-4xl sm:text-5xl md:text-7xl font-display uppercase tracking-widest text-white mb-1 sm:mb-2"
                 style={{ fontFamily: "'Bebas Neue', sans-serif" }}
               >
                 Anime Realm
               </h2>
-              <p className="text-yellow-400 tracking-[0.3em] uppercase text-sm font-semibold opacity-80">
+              <p className="text-yellow-400 tracking-[0.2em] sm:tracking-[0.3em] uppercase text-xs sm:text-sm font-semibold opacity-80">
                 アニメの世界へ
               </p>
             </motion.div>
@@ -242,11 +243,14 @@ export default function LandingPage() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: hoveredCard === 'anime' ? 1 : 0, y: hoveredCard === 'anime' ? 0 : 10 }}
               transition={{ duration: 0.3 }}
-              className="mt-6 px-8 py-3 rounded-none border-2 border-yellow-400 text-yellow-400 font-bold tracking-widest text-sm uppercase"
+              className="mt-4 sm:mt-6 px-5 sm:px-8 py-2.5 sm:py-3 rounded-none border-2 border-yellow-400 text-yellow-400 font-bold tracking-widest text-xs sm:text-sm uppercase"
               style={{ boxShadow: '4px 4px 0px #f43f5e' }}
             >
               Enter the Realm →
             </motion.div>
+
+            {/* Mobile tap hint (shows when not hovered on touch devices) */}
+            <p className="md:hidden mt-3 text-xs text-white/40 tracking-widest uppercase">Tap to Enter</p>
           </div>
         </motion.div>
 
@@ -260,11 +264,9 @@ export default function LandingPage() {
           onClick={() => handleSelect('movie')}
           onMouseEnter={() => setHoveredCard('movie')}
           onMouseLeave={() => setHoveredCard(null)}
-          className="flex-1 relative overflow-hidden cursor-pointer group"
+          className="flex-1 relative overflow-hidden cursor-pointer group rounded-lg md:rounded-none md:border-l-[3px] md:border-t-0 border-l-0 border-t-[3px] border-[#d4af37] md:-ml-[3px] [clip-path:none] md:[clip-path:polygon(5%_0,100%_0,100%_100%,0_100%)]"
           style={{
-            clipPath: 'polygon(5% 0, 100% 0, 100% 100%, 0 100%)',
-            borderLeft: '3px solid #d4af37',
-            marginLeft: '-3px',
+            minHeight: '200px',
           }}
         >
           {/* Background image */}
@@ -303,7 +305,7 @@ export default function LandingPage() {
           />
 
           {/* Content */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center p-8">
+          <div className="absolute inset-0 flex flex-col items-center justify-center p-6 sm:p-8">
             <motion.div
               animate={{ textShadow: hoveredCard === 'movie'
                 ? '0 0 30px rgba(196,18,48,0.8), 2px 2px 4px #000'
@@ -312,18 +314,18 @@ export default function LandingPage() {
               transition={{ duration: 0.4 }}
               className="text-center"
             >
-              <div className="text-6xl mb-3">🎬</div>
+              <div className="text-4xl sm:text-6xl mb-2 sm:mb-3">🎬</div>
               <h2
-                className="text-5xl md:text-7xl uppercase tracking-widest mb-2"
+                className="text-4xl sm:text-5xl md:text-7xl uppercase tracking-widest mb-1 sm:mb-2"
                 style={{
                   fontFamily: "'Bebas Neue', serif",
                   color: hoveredCard === 'movie' ? '#d4af37' : '#f5f0e8',
                   transition: 'color 0.4s ease',
                 }}
               >
-                Cinema & TV
+                Cinema &amp; TV
               </h2>
-              <p className="tracking-[0.3em] uppercase text-sm font-light opacity-70" style={{ color: '#d4af37' }}>
+              <p className="tracking-[0.2em] sm:tracking-[0.3em] uppercase text-xs sm:text-sm font-light opacity-70" style={{ color: '#d4af37' }}>
                 The Silver Screen Awaits
               </p>
             </motion.div>
@@ -332,11 +334,14 @@ export default function LandingPage() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: hoveredCard === 'movie' ? 1 : 0, y: hoveredCard === 'movie' ? 0 : 10 }}
               transition={{ duration: 0.3 }}
-              className="mt-6 px-8 py-3 border-2 text-sm font-bold tracking-widest uppercase"
+              className="mt-4 sm:mt-6 px-5 sm:px-8 py-2.5 sm:py-3 border-2 text-xs sm:text-sm font-bold tracking-widest uppercase"
               style={{ borderColor: '#d4af37', color: '#d4af37', fontFamily: "'Inter', serif" }}
             >
               Roll Film →
             </motion.div>
+
+            {/* Mobile tap hint */}
+            <p className="md:hidden mt-3 text-xs text-white/40 tracking-widest uppercase">Tap to Enter</p>
           </div>
         </motion.div>
       </div>
@@ -346,7 +351,7 @@ export default function LandingPage() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5 }}
-        className="mt-8 text-center z-10"
+        className="mt-6 sm:mt-8 text-center z-10 px-4"
       >
         <p className="text-xs text-gray-600 tracking-widest uppercase mb-1">
           Powered by AniList API · TVMaze API · No account required
