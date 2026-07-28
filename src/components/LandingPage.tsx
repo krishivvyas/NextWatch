@@ -140,26 +140,33 @@ export default function LandingPage() {
         transition={{ delay: 1.2, duration: 0.6 }}
         onClick={handleSurpriseMe}
         disabled={surprising}
-        whileHover={{ scale: 1.07 }}
-        whileTap={{ scale: 0.95 }}
-        className="absolute top-4 left-4 z-20 flex items-center gap-2 px-3 py-2 sm:px-5 sm:py-2.5 text-xs sm:text-sm font-bold uppercase tracking-widest"
+        whileHover={surprising ? {} : { scale: 1.07 }}
+        whileTap={surprising ? {} : { scale: 0.95 }}
+        className="absolute top-4 left-4 z-20 flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full font-bold text-xs sm:text-sm uppercase tracking-widest overflow-hidden"
         style={{
-          background:   'rgba(255,255,255,0.04)',
-          border:       '1px solid rgba(255,255,255,0.12)',
-          backdropFilter: 'blur(8px)',
-          color:        surprising ? '#4a5568' : '#e2e8f0',
-          cursor:       surprising ? 'not-allowed' : 'pointer',
-          letterSpacing: '0.1em',
+          background: surprising
+            ? 'rgba(255,255,255,0.06)'
+            : 'linear-gradient(135deg, #e11d48 0%, #db2777 100%)',
+          border: surprising ? '1px solid rgba(255,255,255,0.12)' : 'none',
+          color: surprising ? '#6b7280' : '#fff',
+          cursor: surprising ? 'not-allowed' : 'pointer',
+          boxShadow: surprising ? 'none' : '0 0 20px rgba(225,29,72,0.5), 0 4px 15px rgba(225,29,72,0.3)',
+          transition: 'all 0.3s ease',
         }}
       >
+        {/* Shimmer sweep on hover */}
+        {!surprising && (
+          <span
+            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full hover:translate-x-full transition-transform duration-700 ease-in-out pointer-events-none"
+          />
+        )}
         <motion.div
           animate={surprising ? { rotate: 360 } : { rotate: 0 }}
           transition={surprising ? { repeat: Infinity, duration: 0.8, ease: 'linear' } : {}}
         >
           <Shuffle className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
         </motion.div>
-        <span className="hidden xs:inline">{surprising ? 'Fetching...' : 'Surprise Me'}</span>
-        <span className="xs:hidden">{surprising ? '...' : 'Surprise'}</span>
+        <span>{surprising ? 'Fetching…' : 'Surprise Me!'}</span>
       </motion.button>
 
       {/* Ambient stars — rendered client-side only */}
